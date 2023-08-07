@@ -58,6 +58,10 @@ func (c *Client) DetectLanguage(ctx context.Context, req *request.DetectLanguage
 	return c.restClient.Post(ctx, req, res)
 }
 
+func (c *Client) Summarize(ctx context.Context, req *request.Summarize, res *response.Summarize) error {
+	return c.restClient.Post(ctx, req, res)
+}
+
 func (c *Client) Rerank(ctx context.Context, req *request.Rerank, res *response.Rerank) error {
 	return c.restClient.Post(ctx, req, res)
 }

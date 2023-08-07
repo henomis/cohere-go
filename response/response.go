@@ -9,7 +9,6 @@ import (
 )
 
 type Response struct {
-	ID      string     `json:"id"`
 	Meta    model.Meta `json:"meta,omitempty"`
 	Headers Headers    `json:"-"`
 	Code    int        `json:"-"`

@@ -9,6 +9,7 @@ import (
 
 type Classify struct {
 	Response
+	ID              string                 `json:"id"`
 	Classifications []model.Classification `json:"classifications"`
 }
 

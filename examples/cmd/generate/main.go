@@ -18,7 +18,7 @@ func main() {
 	err := client.Generate(
 		context.Background(),
 		&request.Generate{
-			Prompt: "Create a linkedin post about my new Go AI framework LinGoose.",
+			Prompt: "Please explain to me how LLMs work",
 		},
 		resp,
 	)

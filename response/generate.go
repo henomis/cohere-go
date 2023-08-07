@@ -9,6 +9,7 @@ import (
 
 type Generate struct {
 	Response
+	ID          string             `json:"id"`
 	Prompt      *string            `json:"prompt"`
 	Generations []model.Generation `json:"generations"`
 }

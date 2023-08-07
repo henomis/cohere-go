@@ -7,6 +7,7 @@ import (
 
 type Embed struct {
 	Response
+	ID         string      `json:"id"`
 	Embeddings [][]float64 `json:"embeddings"`
 	Texts      []string    `json:"texts"`
 }

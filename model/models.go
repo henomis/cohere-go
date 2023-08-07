@@ -105,3 +105,29 @@ type RerankResult struct {
 type Document struct {
 	Text string `json:"text"`
 }
+
+type TextLength string
+
+const (
+	TextLengthShort  TextLength = "short"
+	TextLengthMedium TextLength = "medium"
+	TextLengthLong   TextLength = "long"
+	TextLengthAuto   TextLength = "auto"
+)
+
+type TextFormat string
+
+const (
+	TextFormatParagraph TextFormat = "paragraph"
+	TextFormatBullet    TextFormat = "bullet"
+	TextFormatAuto      TextFormat = "auto"
+)
+
+type Extractiveness string
+
+const (
+	ExtractivenessLow    Extractiveness = "low"
+	ExtractivenessMedium Extractiveness = "medium"
+	ExtractivenessHigh   Extractiveness = "high"
+	ExtractivenessAuto   Extractiveness = "auto"
+)

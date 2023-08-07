@@ -83,3 +83,8 @@ type ClassificationLabel map[string]ClassificationLabelConfidence
 type ClassificationLabelConfidence struct {
 	Confidence float64 `json:"confidence"`
 }
+
+type DetectLanguageResult struct {
+	LanguageName string `json:"language_name"`
+	LanguageCode string `json:"language_code"`
+}

@@ -53,3 +53,7 @@ func (c *Client) Tokenize(ctx context.Context, req *request.Tokenize, res *respo
 func (c *Client) Detokenize(ctx context.Context, req *request.Detokenize, res *response.Detokenize) error {
 	return c.restClient.Post(ctx, req, res)
 }
+
+func (c *Client) DetectLanguage(ctx context.Context, req *request.DetectLanguage, res *response.DetectLanguage) error {
+	return c.restClient.Post(ctx, req, res)
+}

@@ -88,3 +88,20 @@ type DetectLanguageResult struct {
 	LanguageName string `json:"language_name"`
 	LanguageCode string `json:"language_code"`
 }
+
+type RerankModel string
+
+const (
+	RerankModelEnglishV20      RerankModel = "rerank-english-v2.0"
+	RerankModelMultilingualV20 RerankModel = "rerank-multilingual-v2.0"
+)
+
+type RerankResult struct {
+	Document       Document `json:"document"`
+	Index          int64    `json:"index"`
+	RelevanceScore float64  `json:"relevance_score"`
+}
+
+type Document struct {
+	Text string `json:"text"`
+}

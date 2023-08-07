@@ -57,3 +57,7 @@ func (c *Client) Detokenize(ctx context.Context, req *request.Detokenize, res *r
 func (c *Client) DetectLanguage(ctx context.Context, req *request.DetectLanguage, res *response.DetectLanguage) error {
 	return c.restClient.Post(ctx, req, res)
 }
+
+func (c *Client) Rerank(ctx context.Context, req *request.Rerank, res *response.Rerank) error {
+	return c.restClient.Post(ctx, req, res)
+}

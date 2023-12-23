@@ -11,17 +11,40 @@ const (
 
 type EmbedModel string
 
+// English
 const (
-	EmbedModelEnglishLightV20 EmbedModel = "embed-english-light-v2.0"
-	EmbedModelMultilingualV20 EmbedModel = "embed-multilingual-v2.0"
+	EmbedModelEnglishV30      EmbedModel = "embed-english-v3.0"
+	EmbedModelEnglishLightV30 EmbedModel = "embed-english-light-v3.0"
 	EmbedModelEnglishV20      EmbedModel = "embed-english-v2.0"
+	EmbedModelEnglishLightV20 EmbedModel = "embed-english-light-v2.0"
+)
+
+// Multilingual
+const (
+	EmbedModelMultilingualV30      EmbedModel = "embed-multilingual-v3.0"
+	EmbedModelMultilingualLightV30 EmbedModel = "embed-multilingual-light-v3.0"
+	EmbedModelMultilingualV20      EmbedModel = "embed-multilingual-v2.0"
 )
 
 var EmbedModelsSize = map[EmbedModel]int{
-	EmbedModelEnglishLightV20: 1024,
+	EmbedModelEnglishV30:      1024,
+	EmbedModelEnglishLightV30: 384,
 	EmbedModelEnglishV20:      4096,
-	EmbedModelMultilingualV20: 768,
+	EmbedModelEnglishLightV20: 1024,
+	
+	EmbedModelMultilingualV30:      1024,
+	EmbedModelMultilingualLightV30: 384,
+	EmbedModelMultilingualV20:      768,
 }
+
+type EmbedInputType string
+
+const (
+	EmbedSearchQuery    EmbedInputType = "search_query"
+	EmbedSearchDocument EmbedInputType = "search_document"
+	EmbedClassification EmbedInputType = "classification"
+	EmbedClustering     EmbedInputType = "clustering"
+)
 
 type ReturnLikelihoods string
 

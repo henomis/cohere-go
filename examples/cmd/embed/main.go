@@ -6,6 +6,7 @@ import (
 	"os"
 
 	coherego "github.com/henomis/cohere-go"
+	"github.com/henomis/cohere-go/model"
 	"github.com/henomis/cohere-go/request"
 	"github.com/henomis/cohere-go/response"
 )
@@ -22,6 +23,8 @@ func main() {
 				"Hello world",
 				"Ciao mondo",
 			},
+			Model: model.EmbedModelEnglishV30,
+			InputType: model.EmbedSearchQuery,
 		},
 		resp,
 	)

@@ -24,7 +24,7 @@ func main() {
 				"Hello world",
 				"Ciao mondo",
 			},
-			Model:     model.EmbedModelEnglishLightV30,
+			Model:     model.EmbedModelEnglishV30,
 			InputType: &inputType,
 		},
 		resp,

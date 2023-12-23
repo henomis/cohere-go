@@ -31,7 +31,7 @@ var EmbedModelsSize = map[EmbedModel]int{
 	EmbedModelEnglishLightV30: 384,
 	EmbedModelEnglishV20:      4096,
 	EmbedModelEnglishLightV20: 1024,
-	
+
 	EmbedModelMultilingualV30:      1024,
 	EmbedModelMultilingualLightV30: 384,
 	EmbedModelMultilingualV20:      768,

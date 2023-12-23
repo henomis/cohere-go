@@ -16,6 +16,7 @@ func main() {
 	client := coherego.New(os.Getenv("COHERE_API_KEY"))
 
 	resp := &response.Embed{}
+	inputType := model.EmbedSearchQuery
 	err := client.Embed(
 		context.Background(),
 		&request.Embed{
@@ -23,8 +24,8 @@ func main() {
 				"Hello world",
 				"Ciao mondo",
 			},
-			Model: model.EmbedModelEnglishV30,
-			InputType: model.EmbedSearchQuery,
+			Model:     model.EmbedModelEnglishLightV30,
+			InputType: &inputType,
 		},
 		resp,
 	)

@@ -9,10 +9,10 @@ import (
 
 type Chat struct {
 	Response
-	model.NonStreamedChatResponse
-	model.StreamedChatResponse
+	model.NonStreamedChat
+	model.StreamedChat
 
-	acceptContentType string
+	acceptContentType string `json:"-"`
 }
 
 func (g *Chat) AcceptContentType() string {

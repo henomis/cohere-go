@@ -191,14 +191,10 @@ const (
 	ChatMessageRoleChatbot ChatMessageRole = "CHATBOT"
 )
 
-type StreamedChatResponse struct {
-	EventType    EventType                `json:"event_type"`
-	FinishReason FinishReason             `json:"finish_reason"`
-	Response     ConsolidatedChatResponse `json:"response"`
-}
-
-type ConsolidatedChatResponse struct {
-	NonStreamedChatResponse
+type StreamedChat struct {
+	EventType    EventType       `json:"event_type"`
+	FinishReason FinishReason    `json:"finish_reason"`
+	Response     NonStreamedChat `json:"response"`
 }
 
 type FinishReason string
@@ -222,7 +218,7 @@ const (
 	EventTypeStreamEnd               EventType = "stream-end"
 )
 
-type NonStreamedChatResponse struct {
+type NonStreamedChat struct {
 	Text          string         `json:"text"`
 	GenerationID  string         `json:"generation_id"`
 	Citations     []Citation     `json:"citations"`

@@ -9,7 +9,8 @@ import (
 )
 
 const (
-	ContentTypeJSON = "application/json"
+	ContentTypeJSON       = "application/json"
+	ContentTypeStreamJSON = "application/stream+json"
 )
 
 type Response struct {

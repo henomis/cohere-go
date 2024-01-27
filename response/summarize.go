@@ -12,7 +12,7 @@ type Summarize struct {
 }
 
 func (s *Summarize) AcceptContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }
 
 func (s *Summarize) Decode(body io.Reader) error {

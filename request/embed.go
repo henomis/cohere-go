@@ -29,5 +29,5 @@ func (e *Embed) Encode() (io.Reader, error) {
 }
 
 func (e *Embed) ContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }

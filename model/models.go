@@ -65,11 +65,11 @@ const (
 )
 
 type Meta struct {
-	ApiVersion ApiVersion `json:"api_version"`
+	APIVersion APIVersion `json:"api_version"`
 	Warnings   []string   `json:"warnings"`
 }
 
-type ApiVersion struct {
+type APIVersion struct {
 	Version        string `json:"version"`
 	IsDeprecated   bool   `json:"is_deprecated"`
 	IsExperimental bool   `json:"is_experimental"`
@@ -126,7 +126,9 @@ type RerankResult struct {
 }
 
 type Document struct {
-	Text string `json:"text"`
+	ID             string `json:"id"`
+	Text           string `json:"text"`
+	AdditionalProp any    `json:"additionalProp"`
 }
 
 type TextLength string
@@ -154,3 +156,91 @@ const (
 	ExtractivenessHigh   Extractiveness = "high"
 	ExtractivenessAuto   Extractiveness = "auto"
 )
+
+type Connector struct {
+	ID                string `json:"id"`
+	UserAccessToken   string `json:"user_access_token,omitempty"`
+	ContinueOnFailure bool   `json:"continue_on_failure,omitempty"`
+	Options           any    `json:"options,omitempty"`
+}
+
+type CitationQuality string
+
+const (
+	CitationQualityAccurate CitationQuality = "accurate"
+	CitationQualityFast     CitationQuality = "fast"
+)
+
+type ChatMessage struct {
+	Role     ChatMessageRole `json:"role"`
+	Message  string          `json:"message"`
+	UserName *string         `json:"user_name,omitempty"`
+}
+
+type PromptTruncation string
+
+const (
+	PromptTruncationAuto PromptTruncation = "AUTO"
+	PromptTruncationOff  PromptTruncation = "OFF"
+)
+
+type ChatMessageRole string
+
+const (
+	ChatMessageRoleUser    ChatMessageRole = "USER"
+	ChatMessageRoleChatbot ChatMessageRole = "CHATBOT"
+)
+
+type StreamedChat struct {
+	EventType    EventType       `json:"event_type"`
+	FinishReason FinishReason    `json:"finish_reason"`
+	Response     NonStreamedChat `json:"response"`
+}
+
+type FinishReason string
+
+const (
+	FinishReasonComplete   FinishReason = "COMPLETE"
+	FinishReasonErrorLimit FinishReason = "ERROR_LIMIT"
+	FinishReasonMaxTokens  FinishReason = "MAX_TOKENS"
+	FinishReasonError      FinishReason = "ERROR"
+	FinishReasonErrorToxic FinishReason = "ERROR_TOXIC"
+)
+
+type EventType string
+
+const (
+	EventTypeStreamStart             EventType = "stream-start"
+	EventTypeSearchQueriesGeneration EventType = "search-queries-generation"
+	EventTypeSearchResults           EventType = "search-results"
+	EventTypeTextGeneration          EventType = "text-generation"
+	EventTypeCitationGeneration      EventType = "citation-generation"
+	EventTypeStreamEnd               EventType = "stream-end"
+)
+
+type NonStreamedChat struct {
+	Text          string         `json:"text"`
+	GenerationID  string         `json:"generation_id"`
+	Citations     []Citation     `json:"citations"`
+	Documents     []Document     `json:"documents"`
+	SearchQueries []SearchQuery  `json:"search_queries"`
+	SearchResults []SearchResult `json:"search_results"`
+}
+
+type SearchResult struct {
+	SearchQuery SearchQuery `json:"search_query"`
+	Connector   Connector   `json:"connector"`
+	DocumentIDs []string    `json:"document_ids"`
+}
+
+type Citation struct {
+	Start       int      `json:"start"`
+	End         int      `json:"end"`
+	Text        string   `json:"text"`
+	DocumentIDs []string `json:"document_ids"`
+}
+
+type SearchQuery struct {
+	Text         string `json:"text"`
+	GenerationID string `json:"generation_id"`
+}

@@ -13,7 +13,7 @@ type Embed struct {
 }
 
 func (e *Embed) AcceptContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }
 
 func (e *Embed) Decode(body io.Reader) error {

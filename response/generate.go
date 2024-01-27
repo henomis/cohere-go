@@ -15,7 +15,7 @@ type Generate struct {
 }
 
 func (g *Generate) AcceptContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }
 
 func (g *Generate) Decode(body io.Reader) error {

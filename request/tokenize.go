@@ -27,5 +27,5 @@ func (t *Tokenize) Encode() (io.Reader, error) {
 }
 
 func (t *Tokenize) ContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }

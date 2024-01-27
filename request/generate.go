@@ -41,5 +41,5 @@ func (g *Generate) Encode() (io.Reader, error) {
 }
 
 func (g *Generate) ContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }

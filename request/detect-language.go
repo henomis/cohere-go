@@ -24,5 +24,5 @@ func (d *DetectLanguage) Encode() (io.Reader, error) {
 }
 
 func (d *DetectLanguage) ContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }

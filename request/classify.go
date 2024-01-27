@@ -16,7 +16,7 @@ type Classify struct {
 	Truncate *model.Truncate   `json:"truncate,omitempty"`
 }
 
-func (e *Classify) Path() (string, error) {
+func (c *Classify) Path() (string, error) {
 	return "/classify", nil
 }
 
@@ -30,5 +30,5 @@ func (c *Classify) Encode() (io.Reader, error) {
 }
 
 func (c *Classify) ContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }

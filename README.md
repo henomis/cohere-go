@@ -15,6 +15,7 @@ This is [Cohere](https://cohere.com)'s **unofficial** Go client, designed to ena
 | **Index Operations**  | **Status** |
 | --- | --- |
 | Generate | 🟢 | 
+| Chat | 🟢 |
 | Embed | 🟢 |
 | Classify | 🟢 |
 | Tokenize | 🟢 |

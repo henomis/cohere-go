@@ -32,5 +32,5 @@ func (s *Summarize) Encode() (io.Reader, error) {
 }
 
 func (s *Summarize) ContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }

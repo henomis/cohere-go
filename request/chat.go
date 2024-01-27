@@ -25,12 +25,12 @@ type Chat struct {
 	PresencePenalty  *float64               `json:"presence_penalty,omitempty"`
 }
 
-func (g *Chat) Path() (string, error) {
+func (c *Chat) Path() (string, error) {
 	return "/chat", nil
 }
 
-func (g *Chat) Encode() (io.Reader, error) {
-	jsonBytes, err := json.Marshal(g)
+func (c *Chat) Encode() (io.Reader, error) {
+	jsonBytes, err := json.Marshal(c)
 	if err != nil {
 		return nil, err
 	}
@@ -38,6 +38,6 @@ func (g *Chat) Encode() (io.Reader, error) {
 	return bytes.NewReader(jsonBytes), nil
 }
 
-func (g *Chat) ContentType() string {
+func (c *Chat) ContentType() string {
 	return ContentTypeJSON
 }

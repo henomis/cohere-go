@@ -5,6 +5,7 @@ import (
 	"io"
 
 	"github.com/henomis/cohere-go/model"
+	"github.com/henomis/restclientgo"
 )
 
 type Chat struct {
@@ -12,20 +13,29 @@ type Chat struct {
 	model.NonStreamedChat
 	model.StreamedChat
 
-	acceptContentType string `json:"-"`
+	acceptContentType string                      `json:"-"`
+	streamCallback    restclientgo.StreamCallback `json:"-"`
 }
 
-func (g *Chat) AcceptContentType() string {
-	if g.acceptContentType == "" {
+func (c *Chat) AcceptContentType() string {
+	if c.acceptContentType == "" {
 		return ContentTypeJSON
 	}
-	return g.acceptContentType
+	return c.acceptContentType
 }
 
-func (g *Chat) Decode(body io.Reader) error {
-	return json.NewDecoder(body).Decode(g)
+func (c *Chat) Decode(body io.Reader) error {
+	return json.NewDecoder(body).Decode(c)
 }
 
-func (g *Chat) SetAcceptContentType(acceptContentType string) {
-	g.acceptContentType = acceptContentType
+func (c *Chat) SetAcceptContentType(acceptContentType string) {
+	c.acceptContentType = acceptContentType
+}
+
+func (g *Chat) SetStreamCallback(callback restclientgo.StreamCallback) {
+	g.streamCallback = callback
+}
+
+func (g *Chat) StreamCallback() restclientgo.StreamCallback {
+	return g.streamCallback
 }

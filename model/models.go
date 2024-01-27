@@ -192,12 +192,12 @@ const (
 )
 
 type StreamedChatResponse struct {
-	EventType    EventType            `json:"event_type"`
-	FinishReason FinishReason         `json:"finish_reason"`
-	Response     ConsolidatedResponse `json:"response"`
+	EventType    EventType                `json:"event_type"`
+	FinishReason FinishReason             `json:"finish_reason"`
+	Response     ConsolidatedChatResponse `json:"response"`
 }
 
-type ConsolidatedResponse struct {
+type ConsolidatedChatResponse struct {
 	NonStreamedChatResponse
 }
 

@@ -40,6 +40,7 @@ func (c *Client) Generate(ctx context.Context, req *request.Generate, res *respo
 }
 
 func (c *Client) Chat(ctx context.Context, req *request.Chat, res *response.Chat) error {
+	res.SetStreamCallback(nil)
 	res.SetAcceptContentType(response.ContentTypeJSON)
 	return c.restClient.Post(ctx, req, res)
 }
@@ -52,7 +53,7 @@ func (c *Client) ChatStream(
 ) error {
 	res.SetAcceptContentType(response.ContentTypeStreamJSON)
 	req.Stream = true
-	c.restClient.SetStreamCallback(func(body []byte) error {
+	res.SetStreamCallback(func(body []byte) error {
 		err := json.NewDecoder(bytes.NewReader(body)).Decode(res)
 		if err != nil {
 			return err

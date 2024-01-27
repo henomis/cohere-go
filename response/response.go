@@ -8,6 +8,10 @@ import (
 	"github.com/henomis/restclientgo"
 )
 
+const (
+	ContentTypeJSON = "application/json"
+)
+
 type Response struct {
 	Meta    model.Meta `json:"meta,omitempty"`
 	Headers Headers    `json:"-"`
@@ -39,7 +43,6 @@ func (r *Response) SetStatusCode(code int) error {
 }
 
 func (r *Response) SetBody(body io.Reader) error {
-
 	b, err := io.ReadAll(body)
 	if err != nil {
 		return err
@@ -52,9 +55,7 @@ func (r *Response) SetBody(body io.Reader) error {
 }
 
 func (r *Response) SetHeaders(headers restclientgo.Headers) error {
-
 	if header, ok := headers["X-Endpoint-Monthly-Call-Limit"]; ok {
-
 		headerAsInt, err := strconv.Atoi(header[0])
 		if err != nil {
 			return err
@@ -64,7 +65,6 @@ func (r *Response) SetHeaders(headers restclientgo.Headers) error {
 	}
 
 	if header, ok := headers["X-Ratelimit-Limit"]; ok {
-
 		headerAsInt, err := strconv.Atoi(header[0])
 		if err != nil {
 			return err
@@ -74,7 +74,6 @@ func (r *Response) SetHeaders(headers restclientgo.Headers) error {
 	}
 
 	if header, ok := headers["X-Trial-Endpoint-Call-Remaining"]; ok {
-
 		headerAsInt, err := strconv.Atoi(header[0])
 		if err != nil {
 			return err
@@ -84,7 +83,6 @@ func (r *Response) SetHeaders(headers restclientgo.Headers) error {
 	}
 
 	if header, ok := headers["X-Ratelimit-Remaining"]; ok {
-
 		headerAsInt, err := strconv.Atoi(header[0])
 		if err != nil {
 			return err
@@ -94,7 +92,6 @@ func (r *Response) SetHeaders(headers restclientgo.Headers) error {
 	}
 
 	if header, ok := headers["X-Ratelimit-Reset"]; ok {
-
 		headerAsInt, err := strconv.Atoi(header[0])
 		if err != nil {
 			return err
@@ -104,7 +101,6 @@ func (r *Response) SetHeaders(headers restclientgo.Headers) error {
 	}
 
 	if header, ok := headers["X-Trial-Endpoint-Call-Limit"]; ok {
-
 		headerAsInt, err := strconv.Atoi(header[0])
 		if err != nil {
 			return err

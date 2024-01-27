@@ -13,7 +13,7 @@ type DetectLanguage struct {
 }
 
 func (d *DetectLanguage) AcceptContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }
 
 func (d *DetectLanguage) Decode(body io.Reader) error {

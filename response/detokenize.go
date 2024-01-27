@@ -11,7 +11,7 @@ type Detokenize struct {
 }
 
 func (d *Detokenize) AcceptContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }
 
 func (d *Detokenize) Decode(body io.Reader) error {

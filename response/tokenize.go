@@ -12,7 +12,7 @@ type Tokenize struct {
 }
 
 func (t *Tokenize) AcceptContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }
 
 func (t *Tokenize) Decode(body io.Reader) error {

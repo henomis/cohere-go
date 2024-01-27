@@ -13,7 +13,7 @@ type Rerank struct {
 }
 
 func (r *Rerank) AcceptContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }
 
 func (r *Rerank) Decode(body io.Reader) error {

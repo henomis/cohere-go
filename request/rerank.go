@@ -31,5 +31,5 @@ func (r *Rerank) Encode() (io.Reader, error) {
 }
 
 func (r *Rerank) ContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }

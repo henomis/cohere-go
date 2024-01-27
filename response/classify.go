@@ -14,7 +14,7 @@ type Classify struct {
 }
 
 func (c *Classify) AcceptContentType() string {
-	return "application/json"
+	return ContentTypeJSON
 }
 
 func (c *Classify) Decode(body io.Reader) error {

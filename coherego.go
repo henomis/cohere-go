@@ -1,7 +1,9 @@
 package coherego
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
 	"net/http"
 
 	"github.com/henomis/cohere-go/request"
@@ -19,7 +21,6 @@ type Client struct {
 }
 
 func New(apiKey string) *Client {
-
 	restClient := restclientgo.New(cohereEndpoint)
 
 	if len(apiKey) > 0 {
@@ -35,6 +36,31 @@ func New(apiKey string) *Client {
 }
 
 func (c *Client) Generate(ctx context.Context, req *request.Generate, res *response.Generate) error {
+	return c.restClient.Post(ctx, req, res)
+}
+
+func (c *Client) Chat(ctx context.Context, req *request.Chat, res *response.Chat) error {
+	res.SetAcceptContentType(response.ContentTypeJSON)
+	return c.restClient.Post(ctx, req, res)
+}
+
+func (c *Client) ChatStream(
+	ctx context.Context,
+	req *request.Chat,
+	res *response.Chat,
+	callBackFn func(*response.Chat),
+) error {
+	res.SetAcceptContentType("application/stream+json")
+	req.Stream = true
+	c.restClient.SetStreamCallback(func(body []byte) error {
+		err := json.NewDecoder(bytes.NewReader(body)).Decode(res)
+		if err != nil {
+			return err
+		}
+
+		callBackFn(res)
+		return nil
+	})
 	return c.restClient.Post(ctx, req, res)
 }
 

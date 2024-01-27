@@ -50,7 +50,7 @@ func (c *Client) ChatStream(
 	res *response.Chat,
 	callBackFn func(*response.Chat),
 ) error {
-	res.SetAcceptContentType("application/stream+json")
+	res.SetAcceptContentType(response.ContentTypeStreamJSON)
 	req.Stream = true
 	c.restClient.SetStreamCallback(func(body []byte) error {
 		err := json.NewDecoder(bytes.NewReader(body)).Decode(res)

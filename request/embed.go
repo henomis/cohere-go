@@ -9,9 +9,10 @@ import (
 )
 
 type Embed struct {
-	Texts    []string          `json:"texts"`
-	Model    *model.EmbedModel `json:"model,omitempty"`
-	Truncate *model.Truncate   `json:"truncate,omitempty"`
+	Texts     []string              `json:"texts"`
+	Model     model.EmbedModel      `json:"model,omitempty"`
+	InputType *model.EmbedInputType `json:"input_type,omitempty"`
+	Truncate  *model.Truncate       `json:"truncate,omitempty"`
 }
 
 func (e *Embed) Path() (string, error) {

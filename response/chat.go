@@ -32,10 +32,10 @@ func (c *Chat) SetAcceptContentType(acceptContentType string) {
 	c.acceptContentType = acceptContentType
 }
 
-func (g *Chat) SetStreamCallback(callback restclientgo.StreamCallback) {
-	g.streamCallback = callback
+func (c *Chat) SetStreamCallback(callback restclientgo.StreamCallback) {
+	c.streamCallback = callback
 }
 
-func (g *Chat) StreamCallback() restclientgo.StreamCallback {
-	return g.streamCallback
+func (c *Chat) StreamCallback() restclientgo.StreamCallback {
+	return c.streamCallback
 }

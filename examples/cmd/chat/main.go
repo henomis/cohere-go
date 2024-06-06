@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -19,17 +20,23 @@ func main() {
 	err := client.Chat(
 		context.Background(),
 		&request.Chat{
-			ChatHistory: []model.ChatMessage{
+			Message: "Calculate 12345 + 67890",
+			Tools: []model.Tool{
 				{
-					Role:    model.ChatMessageRoleUser,
-					Message: "Hello, how are you?",
-				},
-				{
-					Role:    model.ChatMessageRoleChatbot,
-					Message: "I'm good, how are you?",
+					Name:        "sum",
+					Description: "Use this tool to sum two numbers",
+					ParameterDefinitions: map[string]model.ToolParameterDefinition{
+						"num1": {
+							Description: "The first number to sum",
+							Type:        "int",
+						},
+						"num2": {
+							Description: "The second number to sum",
+							Type:        "int",
+						},
+					},
 				},
 			},
-			Message: "I'm very happy!",
 		},
 		resp,
 	)
@@ -37,6 +44,8 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("resp: %#v\n", resp)
+	b, _ := json.MarshalIndent(resp, "", "  ")
+
+	fmt.Printf("%s\n", string(b))
 
 }

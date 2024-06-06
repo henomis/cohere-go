@@ -213,9 +213,8 @@ const (
 )
 
 type StreamedChat struct {
-	EventType    EventType       `json:"event_type"`
-	FinishReason FinishReason    `json:"finish_reason"`
-	Response     NonStreamedChat `json:"response"`
+	EventType EventType       `json:"event_type"`
+	Response  NonStreamedChat `json:"response"`
 }
 
 type FinishReason string
@@ -240,12 +239,17 @@ const (
 )
 
 type NonStreamedChat struct {
-	Text          string         `json:"text"`
-	GenerationID  string         `json:"generation_id"`
-	Citations     []Citation     `json:"citations"`
-	Documents     []Document     `json:"documents"`
-	SearchQueries []SearchQuery  `json:"search_queries"`
-	SearchResults []SearchResult `json:"search_results"`
+	Text             string         `json:"text"`
+	GenerationID     string         `json:"generation_id"`
+	Citations        []Citation     `json:"citations"`
+	Documents        []Document     `json:"documents"`
+	IsSearchRequired bool           `json:"is_search_required"`
+	SearchQueries    []SearchQuery  `json:"search_queries"`
+	SearchResults    []SearchResult `json:"search_results"`
+	FinishReason     FinishReason   `json:"finish_reason"`
+	ToolCalls        []ToolCall     `json:"tool_calls"`
+	ChatHistory      []ChatMessage  `json:"chat_history"`
+	ForceSingleStep  bool           `json:"force_single_step,omitempty"`
 }
 
 type SearchResult struct {

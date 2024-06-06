@@ -8,6 +8,7 @@ import (
 	"github.com/henomis/cohere-go/model"
 )
 
+// TODO: add rank_fields
 type Rerank struct {
 	Query           string             `json:"query"`
 	Model           *model.RerankModel `json:"model,omitempty"`

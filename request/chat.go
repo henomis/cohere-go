@@ -9,9 +9,10 @@ import (
 )
 
 type Chat struct {
-	Message          string                 `json:"message"`
-	Model            model.Model            `json:"model,omitempty"`
-	Stream           bool                   `json:"stream,omitempty"`
+	Message string      `json:"message"`
+	Model   model.Model `json:"model,omitempty"`
+	Stream  bool        `json:"stream,omitempty"`
+	// TODO this is preamble now
 	PreambleOverride string                 `json:"preamble_override,omitempty"`
 	ChatHistory      []model.ChatMessage    `json:"chat_history,omitempty"`
 	ConversationID   string                 `json:"conversation_id,omitempty"`
@@ -21,8 +22,10 @@ type Chat struct {
 	Documents        []model.Document       `json:"documents,omitempty"`
 	CitationQuality  model.CitationQuality  `json:"citation_quality,omitempty"`
 	Temperature      *float64               `json:"temperature,omitempty"`
-	FrequencyPenalty *float64               `json:"frequency_penalty,omitempty"`
-	PresencePenalty  *float64               `json:"presence_penalty,omitempty"`
+	//TODO: add max tokens, max_input_tokens, k, p, seed, stop_sequences
+	FrequencyPenalty *float64 `json:"frequency_penalty,omitempty"`
+	PresencePenalty  *float64 `json:"presence_penalty,omitempty"`
+	//TODO: add tools, tools_results, force_single_step
 }
 
 func (c *Chat) Path() (string, error) {

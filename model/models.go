@@ -7,7 +7,13 @@ const (
 	ModelCommandNightly      Model = "command-nightly"
 	ModelCommandLight        Model = "command-light"
 	ModelCommandLightNightly Model = "command-light-nightly"
+	ModelCommandR            Model = "command-r"
+	ModelCommandRPlus        Model = "command-r-plus"
 )
+
+func (m *Model) String() string {
+	return string(*m)
+}
 
 type EmbedModel string
 
@@ -175,6 +181,7 @@ type ChatMessage struct {
 	Role     ChatMessageRole `json:"role"`
 	Message  string          `json:"message"`
 	UserName *string         `json:"user_name,omitempty"`
+	// TODO add tool calls
 }
 
 type PromptTruncation string
@@ -182,6 +189,7 @@ type PromptTruncation string
 const (
 	PromptTruncationAuto PromptTruncation = "AUTO"
 	PromptTruncationOff  PromptTruncation = "OFF"
+	//TODO: add AUTO_PRESERVE_ORDER
 )
 
 type ChatMessageRole string
@@ -189,6 +197,7 @@ type ChatMessageRole string
 const (
 	ChatMessageRoleUser    ChatMessageRole = "USER"
 	ChatMessageRoleChatbot ChatMessageRole = "CHATBOT"
+	// TODO add system and tool
 )
 
 type StreamedChat struct {

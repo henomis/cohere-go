@@ -35,6 +35,7 @@ func New(apiKey string) *Client {
 	}
 }
 
+// Deprecated: this is part of legacy API
 func (c *Client) Generate(ctx context.Context, req *request.Generate, res *response.Generate) error {
 	return c.restClient.Post(ctx, req, res)
 }
@@ -81,14 +82,19 @@ func (c *Client) Detokenize(ctx context.Context, req *request.Detokenize, res *r
 	return c.restClient.Post(ctx, req, res)
 }
 
-func (c *Client) DetectLanguage(ctx context.Context, req *request.DetectLanguage, res *response.DetectLanguage) error {
-	return c.restClient.Post(ctx, req, res)
-}
-
+// Deprecated: this is part of legacy API
 func (c *Client) Summarize(ctx context.Context, req *request.Summarize, res *response.Summarize) error {
 	return c.restClient.Post(ctx, req, res)
 }
 
 func (c *Client) Rerank(ctx context.Context, req *request.Rerank, res *response.Rerank) error {
 	return c.restClient.Post(ctx, req, res)
+}
+
+func (c *Client) Model(ctx context.Context, req *request.Model, res *response.Model) error {
+	return c.restClient.Get(ctx, req, res)
+}
+
+func (c *Client) ListModels(ctx context.Context, req *request.ListModels, res *response.ListModels) error {
+	return c.restClient.Get(ctx, req, res)
 }

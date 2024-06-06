@@ -9,11 +9,10 @@ import (
 )
 
 type Chat struct {
-	Message string      `json:"message"`
-	Model   model.Model `json:"model,omitempty"`
-	Stream  bool        `json:"stream,omitempty"`
-	// TODO this is preamble now
-	PreambleOverride string                 `json:"preamble_override,omitempty"`
+	Message          string                 `json:"message"`
+	Model            model.Model            `json:"model,omitempty"`
+	Stream           bool                   `json:"stream,omitempty"`
+	Preamble         string                 `json:"preamble,omitempty"`
 	ChatHistory      []model.ChatMessage    `json:"chat_history,omitempty"`
 	ConversationID   string                 `json:"conversation_id,omitempty"`
 	PromptTruncation model.PromptTruncation `json:"prompt_truncation,omitempty"`
@@ -22,10 +21,16 @@ type Chat struct {
 	Documents        []model.Document       `json:"documents,omitempty"`
 	CitationQuality  model.CitationQuality  `json:"citation_quality,omitempty"`
 	Temperature      *float64               `json:"temperature,omitempty"`
-	//TODO: add max tokens, max_input_tokens, k, p, seed, stop_sequences
-	FrequencyPenalty *float64 `json:"frequency_penalty,omitempty"`
-	PresencePenalty  *float64 `json:"presence_penalty,omitempty"`
-	//TODO: add tools, tools_results, force_single_step
+	MaxTokens        *int                   `json:"max_tokens,omitempty"`
+	MaxInputTokens   *int                   `json:"max_input_tokens,omitempty"`
+	K                *int                   `json:"k,omitempty"`
+	P                *float64               `json:"p,omitempty"`
+	Seed             *float64               `json:"seed,omitempty"`
+	StopSequences    []string               `json:"stop_sequences,omitempty"`
+	FrequencyPenalty *float64               `json:"frequency_penalty,omitempty"`
+	PresencePenalty  *float64               `json:"presence_penalty,omitempty"`
+	Tools            []model.Tool           `json:"tools,omitempty"`
+	ToolResults      []model.ToolResult     `json:"tool_results,omitempty"`
 }
 
 func (c *Chat) Path() (string, error) {

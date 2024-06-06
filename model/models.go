@@ -178,18 +178,29 @@ const (
 )
 
 type ChatMessage struct {
-	Role     ChatMessageRole `json:"role"`
-	Message  string          `json:"message"`
-	UserName *string         `json:"user_name,omitempty"`
-	// TODO add tool calls
+	Role        ChatMessageRole `json:"role"`
+	Message     string          `json:"message"`
+	UserName    *string         `json:"user_name,omitempty"`
+	ToolCalls   []ToolCall      `json:"tool_calls,omitempty"`
+	ToolResults []ToolResult    `json:"tool_results,omitempty"`
+}
+
+type ToolCall struct {
+	Name       string                 `json:"name"`
+	Parameters map[string]interface{} `json:"parameters"`
+}
+
+type ToolResult struct {
+	Call    ToolCall                 `json:"call"`
+	Outputs []map[string]interface{} `json:"outputs"`
 }
 
 type PromptTruncation string
 
 const (
-	PromptTruncationAuto PromptTruncation = "AUTO"
-	PromptTruncationOff  PromptTruncation = "OFF"
-	//TODO: add AUTO_PRESERVE_ORDER
+	PromptTruncationAuto              PromptTruncation = "AUTO"
+	PromptTruncationOff               PromptTruncation = "OFF"
+	PromptTruncationAutoPreserveOrder PromptTruncation = "AUTO_PRESERVE_ORDER"
 )
 
 type ChatMessageRole string
@@ -197,7 +208,8 @@ type ChatMessageRole string
 const (
 	ChatMessageRoleUser    ChatMessageRole = "USER"
 	ChatMessageRoleChatbot ChatMessageRole = "CHATBOT"
-	// TODO add system and tool
+	ChatMessageRoleSystem  ChatMessageRole = "SYSTEM"
+	ChatMessageRoleTool    ChatMessageRole = "TOOL"
 )
 
 type StreamedChat struct {
@@ -252,4 +264,16 @@ type Citation struct {
 type SearchQuery struct {
 	Text         string `json:"text"`
 	GenerationID string `json:"generation_id"`
+}
+
+type Tool struct {
+	Name                 string                             `json:"name"`
+	Description          string                             `json:"description"`
+	ParameterDefinitions map[string]ToolParameterDefinition `json:"parameter_definitions,omitempty"`
+}
+
+type ToolParameterDefinition struct {
+	Description string `json:"description,omitempty"`
+	Type        string `json:"type"`
+	Required    bool   `json:"required,omitempty"`
 }

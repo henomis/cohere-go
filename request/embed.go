@@ -8,7 +8,6 @@ import (
 	"github.com/henomis/cohere-go/model"
 )
 
-// TODO add embedding_types
 type Embed struct {
 	Texts     []string              `json:"texts"`
 	Model     model.EmbedModel      `json:"model,omitempty"`

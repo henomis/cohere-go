@@ -14,6 +14,7 @@ type Rerank struct {
 	Model           *model.RerankModel `json:"model,omitempty"`
 	Documents       []string           `json:"documents"`
 	TopN            *int               `json:"top_n,omitempty"`
+	RankFields      []string           `json:"rank_fields,omitempty"`
 	ReturnDocuments bool               `json:"return_documents"`
 	MaxChunksPerDoc *int               `json:"max_chunks_per_doc,omitempty"`
 }

@@ -98,3 +98,7 @@ func (c *Client) Model(ctx context.Context, req *request.Model, res *response.Mo
 func (c *Client) ListModels(ctx context.Context, req *request.ListModels, res *response.ListModels) error {
 	return c.restClient.Get(ctx, req, res)
 }
+
+func (c *Client) CheckAPIKey(ctx context.Context, req *request.CheckAPIKey, res *response.CheckAPIKey) error {
+	return c.restClient.Post(ctx, req, res)
+}

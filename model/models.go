@@ -7,7 +7,13 @@ const (
 	ModelCommandNightly      Model = "command-nightly"
 	ModelCommandLight        Model = "command-light"
 	ModelCommandLightNightly Model = "command-light-nightly"
+	ModelCommandR            Model = "command-r"
+	ModelCommandRPlus        Model = "command-r-plus"
 )
+
+func (m *Model) String() string {
+	return string(*m)
+}
 
 type EmbedModel string
 
@@ -172,16 +178,30 @@ const (
 )
 
 type ChatMessage struct {
-	Role     ChatMessageRole `json:"role"`
-	Message  string          `json:"message"`
-	UserName *string         `json:"user_name,omitempty"`
+	Role        ChatMessageRole `json:"role"`
+	Message     string          `json:"message"`
+	UserName    *string         `json:"user_name,omitempty"`
+	ToolCalls   []ToolCall      `json:"tool_calls,omitempty"`
+	ToolResults []ToolResult    `json:"tool_results,omitempty"`
+}
+
+type ToolCall struct {
+	ID         string                 `json:"-"`
+	Name       string                 `json:"name"`
+	Parameters map[string]interface{} `json:"parameters"`
+}
+
+type ToolResult struct {
+	Call    ToolCall      `json:"call"`
+	Outputs []interface{} `json:"outputs"`
 }
 
 type PromptTruncation string
 
 const (
-	PromptTruncationAuto PromptTruncation = "AUTO"
-	PromptTruncationOff  PromptTruncation = "OFF"
+	PromptTruncationAuto              PromptTruncation = "AUTO"
+	PromptTruncationOff               PromptTruncation = "OFF"
+	PromptTruncationAutoPreserveOrder PromptTruncation = "AUTO_PRESERVE_ORDER"
 )
 
 type ChatMessageRole string
@@ -189,22 +209,25 @@ type ChatMessageRole string
 const (
 	ChatMessageRoleUser    ChatMessageRole = "USER"
 	ChatMessageRoleChatbot ChatMessageRole = "CHATBOT"
+	ChatMessageRoleSystem  ChatMessageRole = "SYSTEM"
+	ChatMessageRoleTool    ChatMessageRole = "TOOL"
 )
 
 type StreamedChat struct {
-	EventType    EventType       `json:"event_type"`
-	FinishReason FinishReason    `json:"finish_reason"`
-	Response     NonStreamedChat `json:"response"`
+	EventType EventType       `json:"event_type"`
+	Response  NonStreamedChat `json:"response"`
 }
 
 type FinishReason string
 
 const (
-	FinishReasonComplete   FinishReason = "COMPLETE"
-	FinishReasonErrorLimit FinishReason = "ERROR_LIMIT"
-	FinishReasonMaxTokens  FinishReason = "MAX_TOKENS"
-	FinishReasonError      FinishReason = "ERROR"
-	FinishReasonErrorToxic FinishReason = "ERROR_TOXIC"
+	FinishReasonComplete     FinishReason = "COMPLETE"
+	FinishReasonStopSequence FinishReason = "STOP_SEQUENCE"
+	FinishReasonError        FinishReason = "ERROR"
+	FinishReasonErrorToxic   FinishReason = "ERROR_TOXIC"
+	FinishReasonErrorLimit   FinishReason = "ERROR_LIMIT"
+	FinishReasonUserCancel   FinishReason = "USER_CANCEL"
+	FinishReasonMaxTokens    FinishReason = "MAX_TOKENS"
 )
 
 type EventType string
@@ -219,12 +242,16 @@ const (
 )
 
 type NonStreamedChat struct {
-	Text          string         `json:"text"`
-	GenerationID  string         `json:"generation_id"`
-	Citations     []Citation     `json:"citations"`
-	Documents     []Document     `json:"documents"`
-	SearchQueries []SearchQuery  `json:"search_queries"`
-	SearchResults []SearchResult `json:"search_results"`
+	Text             string         `json:"text"`
+	GenerationID     string         `json:"generation_id"`
+	Citations        []Citation     `json:"citations"`
+	Documents        []Document     `json:"documents"`
+	IsSearchRequired bool           `json:"is_search_required"`
+	SearchQueries    []SearchQuery  `json:"search_queries"`
+	SearchResults    []SearchResult `json:"search_results"`
+	FinishReason     FinishReason   `json:"finish_reason"`
+	ToolCalls        []ToolCall     `json:"tool_calls"`
+	ChatHistory      []ChatMessage  `json:"chat_history"`
 }
 
 type SearchResult struct {
@@ -243,4 +270,16 @@ type Citation struct {
 type SearchQuery struct {
 	Text         string `json:"text"`
 	GenerationID string `json:"generation_id"`
+}
+
+type Tool struct {
+	Name                 string                             `json:"name"`
+	Description          string                             `json:"description"`
+	ParameterDefinitions map[string]ToolParameterDefinition `json:"parameter_definitions,omitempty"`
+}
+
+type ToolParameterDefinition struct {
+	Description string `json:"description,omitempty"`
+	Type        string `json:"type"`
+	Required    bool   `json:"required,omitempty"`
 }

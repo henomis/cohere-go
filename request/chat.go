@@ -31,6 +31,7 @@ type Chat struct {
 	PresencePenalty  *float64               `json:"presence_penalty,omitempty"`
 	Tools            []model.Tool           `json:"tools,omitempty"`
 	ToolResults      []model.ToolResult     `json:"tool_results,omitempty"`
+	ForceSingleStep  bool                   `json:"force_single_step,omitempty"`
 }
 
 func (c *Chat) Path() (string, error) {

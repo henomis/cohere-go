@@ -220,11 +220,13 @@ type StreamedChat struct {
 type FinishReason string
 
 const (
-	FinishReasonComplete   FinishReason = "COMPLETE"
-	FinishReasonErrorLimit FinishReason = "ERROR_LIMIT"
-	FinishReasonMaxTokens  FinishReason = "MAX_TOKENS"
-	FinishReasonError      FinishReason = "ERROR"
-	FinishReasonErrorToxic FinishReason = "ERROR_TOXIC"
+	FinishReasonComplete     FinishReason = "COMPLETE"
+	FinishReasonStopSequence FinishReason = "STOP_SEQUENCE"
+	FinishReasonError        FinishReason = "ERROR"
+	FinishReasonErrorToxic   FinishReason = "ERROR_TOXIC"
+	FinishReasonErrorLimit   FinishReason = "ERROR_LIMIT"
+	FinishReasonUserCancel   FinishReason = "USER_CANCEL"
+	FinishReasonMaxTokens    FinishReason = "MAX_TOKENS"
 )
 
 type EventType string
@@ -249,7 +251,6 @@ type NonStreamedChat struct {
 	FinishReason     FinishReason   `json:"finish_reason"`
 	ToolCalls        []ToolCall     `json:"tool_calls"`
 	ChatHistory      []ChatMessage  `json:"chat_history"`
-	ForceSingleStep  bool           `json:"force_single_step,omitempty"`
 }
 
 type SearchResult struct {

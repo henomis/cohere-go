@@ -186,6 +186,7 @@ type ChatMessage struct {
 }
 
 type ToolCall struct {
+	ID         string                 `json:"-"`
 	Name       string                 `json:"name"`
 	Parameters map[string]interface{} `json:"parameters"`
 }

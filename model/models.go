@@ -192,8 +192,8 @@ type ToolCall struct {
 }
 
 type ToolResult struct {
-	Call    ToolCall                 `json:"call"`
-	Outputs []map[string]interface{} `json:"outputs"`
+	Call    ToolCall      `json:"call"`
+	Outputs []interface{} `json:"outputs"`
 }
 
 type PromptTruncation string

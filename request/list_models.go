@@ -37,6 +37,7 @@ func (c *ListModels) Path() (string, error) {
 	return "/models?" + params, nil
 }
 
+// nolint: nilnil
 func (c *ListModels) Encode() (io.Reader, error) {
 	return nil, nil
 }

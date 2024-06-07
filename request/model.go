@@ -14,6 +14,7 @@ func (c *Model) Path() (string, error) {
 	return "/models/" + c.Model.String(), nil
 }
 
+// nolint: nilnil
 func (c *Model) Encode() (io.Reader, error) {
 	return nil, nil
 }

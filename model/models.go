@@ -186,9 +186,8 @@ type ChatMessage struct {
 }
 
 type ToolCall struct {
-	GenerationID string                 `json:"generation_id"`
-	Name         string                 `json:"name"`
-	Parameters   map[string]interface{} `json:"parameters"`
+	Name       string                 `json:"name"`
+	Parameters map[string]interface{} `json:"parameters"`
 }
 
 type ToolResult struct {

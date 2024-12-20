@@ -121,8 +121,13 @@ type DetectLanguageResult struct {
 type RerankModel string
 
 const (
-	RerankModelEnglishV20      RerankModel = "rerank-english-v2.0"
+	RerankModelV35 RerankModel = "rerank-v3.5"
+
+	RerankModelEnglishV20 RerankModel = "rerank-english-v2.0"
+	RerankModelEnglishV30 RerankModel = "rerank-english-v3.0"
+
 	RerankModelMultilingualV20 RerankModel = "rerank-multilingual-v2.0"
+	RerankModelMultilingualV30 RerankModel = "rerank-multilingual-v3.0"
 )
 
 type RerankResult struct {
